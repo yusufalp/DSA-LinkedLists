@@ -9,11 +9,9 @@ class LinkedList {
   constructor() {
     this.head = null
   }
-
   insertFirst(item) {
     this.head = new _Node(item, this.head)
   }
-
   insertLast(item) {
     if (this.head === null) {
       this.insertFirst(item)
@@ -26,7 +24,6 @@ class LinkedList {
       tempNode.next = new _Node(item, null)
     }
   }
-
   find(item) {
     // Start at the head
     let currNode = this.head;
@@ -49,7 +46,6 @@ class LinkedList {
     // Found it
     console.log(currNode);
   }
-
   remove(item) {
     // If the list is empty
     if (!this.head) {
@@ -78,43 +74,46 @@ class LinkedList {
   }
 }
 
+// Available functions: 
+/*  main, 
+    insertBefore, 
+    insertAfter, 
+    insertAt, 
+    display, 
+    size, 
+    isEmpty, 
+    reversedLinkedList
+*/
+
+// Available methods: insertFirst, insertLast, find, remove
 const SLL = new LinkedList()
 
 function main() {
   SLL.insertFirst('Apollo');
-  // console.log(SLL)
   SLL.insertLast('Boomer')
-  // console.log(SLL)
   SLL.insertLast('Helo')
-  // console.log(SLL)
   SLL.insertLast('Husker')
-  // console.log(SLL)
   SLL.insertLast('Starbuck')
-  // console.log(SLL)
   SLL.insertLast('Tauhida')
-  // console.log(SLL)
 }
 
-// isEmpty()
+isEmpty()
 main()
-// isEmpty()
 // display()
-// size()
 
 function insertBefore(linkedList, item, before) {
   let firstList = linkedList.head
   let previousNode = firstList
-  // if LinkedList is empty
+  // if linkedList is empty
   if (firstList === null) {
     linkedList.head = { value: item, next: null }
     return
   }
-
+  // If adding before the first item
   if (firstList.value === before) {
     linkedList.head = { value: item, next: firstList }
     return
   }
-
   while (firstList) {
     if (firstList.value === before) {
       previousNode.next = { value: item, next: firstList }
@@ -126,11 +125,33 @@ function insertBefore(linkedList, item, before) {
   console.log("after insertBefore-> ", linkedList)
 }
 
-insertBefore(SLL, 'Homer', 'Apollo')
+// insertBefore(SLL, 'Athena', 'Boomer')
+// display()
 
-function insertAfter(item) {
+function insertAfter(linkedList, item, after) {
+  let firstList = linkedList.head
+  let nextNode = firstList.next
+  // if LinkedList is empty
+  if (firstList === null) {
+    linkedList.head = { value: item, next: null }
+    return
+  }
+  while(firstList){
+    if(firstList.value === after){
+      firstList.next = {value: item, next: firstList.next}
+      nextNode = nextNode.next
+      return
+    }
+    firstList = firstList.next
+    nextNode = nextNode
+  }
 
+  console.log("after insertAfter-> ", linkedList)
 }
+
+// display()
+// insertAfter(SLL, 'Hotdog', 'Apollo')
+// display()
 
 function insertAt(value, index) {
   let starter = SLL.head
@@ -146,33 +167,11 @@ function insertAt(value, index) {
   }
 }
 
-insertAt('Lessie', 2)
+// insertAt('Lessie', 2)
 // display()
-insertAt('Yusuf', 5)
-display()
+// insertAt('Yusuf', 5)
+// display()
 
-function display() {
-  let node = SLL.head
-  console.log('-----------')
-  while (node) {
-    console.log("display ->", node.value)
-    node = node.next
-  }
-}
-
-function size() {
-  let starter = SLL.head
-  let counter = 0
-  while (starter) {
-    counter++
-    starter = starter.next
-  }
-  console.log("Length is ->", counter)
-}
-
-function isEmpty() {
-  console.log("isEmpty ->", SLL.head === null ? true : false)
-}
 
 function WhatDoesThisProgramDo(lst) {
   let current = lst.head;
@@ -191,10 +190,8 @@ function WhatDoesThisProgramDo(lst) {
   console.log("What does this one do? ->", current)
 }
 
-SLL.insertLast('Yusuf')
-display()
-WhatDoesThisProgramDo(SLL)
-display()
+// WhatDoesThisProgramDo(SLL)
+// display()
 
 function reverseLinkedList() {
   let node = SLL.head
@@ -214,5 +211,47 @@ function reverseLinkedList() {
   return SLL.head = previous
 }
 
-reverseLinkedList()
-display()
+// reverseLinkedList()
+// display()
+
+function fromTheEnd(){
+
+}
+
+function middleOfList(){
+
+}
+
+function cycleList(){
+
+}
+
+function sortList(){
+  
+}
+
+
+
+
+function display() {
+  let node = SLL.head
+  console.log('-----------')
+  while (node) {
+    console.log("display ->", node.value)
+    node = node.next
+  }
+}
+
+function size() {
+  let starter = SLL.head
+  let counter = 0
+  while (starter) {
+    counter++
+    starter = starter.next
+  }
+  console.log("Size is ->", counter)
+}
+
+function isEmpty() {
+  console.log("isEmpty ->", SLL.head === null ? true : false)
+}
