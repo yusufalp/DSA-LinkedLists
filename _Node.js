@@ -89,17 +89,20 @@ class LinkedList {
 const SLL = new LinkedList()
 
 function main() {
-  SLL.insertFirst('Apollo');
+  SLL.insertFirst('Apollo')
+  SLL.insertLast('Husker')
+  SLL.insertLast('Starbuck')
   SLL.insertLast('Boomer')
   SLL.insertLast('Helo')
   SLL.insertLast('Husker')
-  SLL.insertLast('Starbuck')
+  SLL.insertLast('Yusuf')
   SLL.insertLast('Tauhida')
+  // SLL.head.next.next.next = SLL.head
 }
 
 isEmpty()
 main()
-// display()
+display()
 
 function insertBefore(linkedList, item, before) {
   let firstList = linkedList.head
@@ -136,9 +139,9 @@ function insertAfter(linkedList, item, after) {
     linkedList.head = { value: item, next: null }
     return
   }
-  while(firstList){
-    if(firstList.value === after){
-      firstList.next = {value: item, next: firstList.next}
+  while (firstList) {
+    if (firstList.value === after) {
+      firstList.next = { value: item, next: firstList.next }
       nextNode = nextNode.next
       return
     }
@@ -194,19 +197,18 @@ function WhatDoesThisProgramDo(lst) {
 // display()
 
 function reverseLinkedList() {
-  let node = SLL.head
+  if (SLL.head === null) {
+    return 'Linked list is empty'
+  }
+  let first = SLL.head
   let next = null
   let previous = null
 
-  while(node.next){
-    next = node.next
-    node.next = previous
-    temp = next.next
-    // next.next = node
-    // a => node => c
-    // a <= node <= c
-    previous = node
-    node = next
+  while (first) {
+    next = first.next
+    first.next = previous
+    previous = first
+    first = next
   }
   return SLL.head = previous
 }
@@ -214,21 +216,79 @@ function reverseLinkedList() {
 // reverseLinkedList()
 // display()
 
-function fromTheEnd(){
+function thirdFromTheEnd(linkedList) {
+  let firstList = linkedList.head
+  let previous = null
+  let beforePrevious = null
 
+  while (firstList.next) {
+    beforePrevious = previous
+    previous = firstList
+    firstList = firstList.next
+  }
+  return beforePrevious.value
 }
 
-function middleOfList(){
+// console.log(thirdFromTheEnd(SLL))
 
+function middleOfList(linkedList) {
+  let firstList = linkedList.head
+  let doubleList = linkedList.head
+
+  while (doubleList) {
+    doubleList = doubleList.next.next
+    firstList = firstList.next
+  }
+  return firstList.value
 }
 
-function cycleList(){
+// console.log(middleOfList(SLL))
 
+function cycleList(linkedList) {
+  let firstList = linkedList.head
+  let num = 0
+  while (firstList) {
+    let secondList = linkedList.head
+    for (let i = 0; i < num; i++) {
+      if (firstList === secondList) {
+        return true
+      }
+      secondList = secondList.next
+    }
+    num++
+    firstList = firstList.next
+  }
+  return false
 }
 
-function sortList(){
-  
+// console.log(cycleList(SLL))
+
+function sortList(linkedList) {
+  let changed
+  do {
+    changed = false
+    let first = linkedList.head
+    let previous = null
+    while (first && first.next) {
+      if (first.value > first.next.value) {
+        let temp = first.next
+        first.next = first.next.next
+        if (previous) {
+          previous.next = temp
+        } else {
+          linkedList.head = temp
+        }
+        temp.next = first
+        changed = true
+      }
+      previous = first
+      first = first.next
+    }
+  } while (changed)
 }
+
+sortList(SLL)
+display()
 
 
 
