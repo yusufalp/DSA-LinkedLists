@@ -100,9 +100,9 @@ function main() {
   // SLL.head.next.next.next = SLL.head
 }
 
-isEmpty()
-main()
-display()
+// isEmpty()
+// main()
+// display()
 
 function insertBefore(linkedList, item, before) {
   let firstList = linkedList.head
@@ -287,13 +287,13 @@ function sortList(linkedList) {
   } while (changed)
 }
 
-sortList(SLL)
-display()
+// sortList(SLL)
+// display()
 
 
 
 
-function display() {
+function display(SLL) {
   let node = SLL.head
   console.log('-----------')
   while (node) {
@@ -315,3 +315,6 @@ function size() {
 function isEmpty() {
   console.log("isEmpty ->", SLL.head === null ? true : false)
 }
+
+const capsule = { LinkedList, display, cycleList }
+module.exports = capsule;
