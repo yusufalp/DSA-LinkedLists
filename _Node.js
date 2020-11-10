@@ -101,8 +101,8 @@ function main() {
 }
 
 // isEmpty()
-// main()
-// display()
+main()
+display()
 
 function insertBefore(linkedList, item, before) {
   let firstList = linkedList.head
@@ -205,6 +205,7 @@ function reverseLinkedList() {
   let previous = null
 
   while (first) {
+    console.log('---')
     next = first.next
     first.next = previous
     previous = first
@@ -213,8 +214,8 @@ function reverseLinkedList() {
   return SLL.head = previous
 }
 
-// reverseLinkedList()
-// display()
+reverseLinkedList()
+display()
 
 function thirdFromTheEnd(linkedList) {
   let firstList = linkedList.head
@@ -293,7 +294,7 @@ function sortList(linkedList) {
 
 
 
-function display(SLL) {
+function display() {
   let node = SLL.head
   console.log('-----------')
   while (node) {
